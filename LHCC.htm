@@ -8,9 +8,9 @@
         <meta name="keywords" content="character creation, lambhide, table-top, roleplaying, role-playing, rpg, ttrpg">
         <meta name="author" content="AidenB">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <!--CSS-->
-        
+
         <style type="text/css">
             .mainFrame{
                 padding-top: 5%;
@@ -20,6 +20,7 @@
                 justify-content: center;
                 max-width: 650px;
                 margin: auto;
+                width:100vw
             }
             .nameDesc{
                 text-align: center;
@@ -39,7 +40,7 @@
                 width: 100%;
             }
             .attb{
-                
+
                 min-width: 100%;
                 text-align: center;
                 margin:20px auto;
@@ -102,10 +103,11 @@
                 margin: auto;
                 text-align: center;
             }
+            
             .statsTable{
                 text-align: center;
                 width: 100%;
-                
+
             }
             .statsTable thead{
                 color: white;
@@ -125,6 +127,7 @@
                 margin: 15px auto;
                 text-align: center;
             }
+            
             .part4{
                 max-width: 400px;
                 margin: 15px auto;
@@ -140,15 +143,23 @@
                 margin: 15px auto;
                 margin: auto;
                 text-align: center;
-            
+
             }
             .part3 input{
                 max-width:20px;
                 text-align: center;
             }
+            .part3 .talent{
+                width: 65%;
+                max-width: 65%;
+            }
             .part4 input{
                 max-width:20px;
                 text-align: center;
+            }
+            .part4 .power{
+                width: 65%;
+                max-width: 65%;
             }
             .lvpChart{
                 text-align: center;
@@ -245,9 +256,9 @@
                     </tr>
                 </table>
             </div>
-            
+
         </div>
-        
+
         <div class="part2">
             STATS
             <table class="statsTable">
@@ -310,7 +321,7 @@
             </table>
         </div>
 
-        
+
         <div class="PYoN">
             <table style="width: 100%;" >
                         <tr>
@@ -416,10 +427,10 @@
             </table>
         </div>
         <div class="part6">
-            
+
             LEVEL POINT CHART 
             <table class="lvpChart">
-                
+
                 <thead>
                     <td colspan="6" style="text-align: left;">COST</td>
                 </thead>
@@ -493,7 +504,7 @@
             var hasP = 1;
             var hasPLvp = 0;
             var AtbLimit = 30;
-    
+
             //LevelPoint Vars
             var SpentLvp = 0;
 
@@ -521,7 +532,7 @@
             var PowersSpent = 0;
             var NewPowers = 0;
             var PowersList = [0,0,0,0,0,0,0,0];
-            
+
             function UpdateDoc()
             {
                 //Getting all doc values
@@ -530,15 +541,15 @@
                 Speed = ((AGIDIE * 2.5)+10) + LvpSpeed;
                 if (WITDIE > (EGODIE/2)) {Pws = WITDIE + LvpPws} else {Pws = (LvpPws+(EGODIE/2))};
                 Talents = WITDIE / 2 + LvpTalent;
-                
+
                 if (hasP > 1) { if(WITDIE > EGODIE) {hasP = (WITDIE * 1.5)} else {hasP = (EGODIE * 1.5)} Pws = 0;} else hasP = 0;
                 Wealth = (EGODIE * 5) + LvpWealth - SpentWealth;
-    
+
                 AtbLimit = 30 - (STRDIE + AGIDIE + WITDIE + EGODIE)
                 //Talents or Powers
                 Lvp = EGODIE + hasP + (2 * (AtbLimit)) + SpentLvp;
-                
-                
+
+
                 //Set Doc Values
                 document.getElementById("AttributeLimit").value = AtbLimit;
                 document.getElementById("Vit").value = Vit;
@@ -554,32 +565,32 @@
                 document.getElementById("RisenPoints").value = LvpRisen;
                 if ((LvpSTR + LvpAGI + LvpWIT + LvpEGO)>0) document.getElementById("LvpAttbRow").style.display = 'table-row'; else document.getElementById('LvpAttbRow').style.display = 'none';
             }
-    
+
             //Attributes
             function GetSTRDice(dice) 
             {
                 STRDIE = parseInt(dice.value);
                 UpdateDoc();
             }
-    
+
             function GetAGIDice(dice) 
             {
                 AGIDIE = parseInt(dice.value);
                 UpdateDoc();
             }
-    
+
             function GetWITDice(dice) 
             {
                 WITDIE = parseInt(dice.value);
                 UpdateDoc();
             }
-    
+
             function GetEGODice(dice) 
             {
                 EGODIE = parseInt(dice.value);
                 UpdateDoc();
             }
-    
+
             function YNPowers(answer)
             {
                 hasP = parseInt(answer.value);
@@ -598,13 +609,13 @@
                             break;
                         }
                     }
-                    
+
                 } else {
                     alert("No more available talents.\nGet more from the level point chart.")
                 }
                 UpdateDoc();
             }
-    
+
             function Talentaddorsub(input)
             {
                 var AoS = input.split(",")[0];
@@ -612,7 +623,7 @@
                 var curval = document.getElementById("talentworth" + position).value;
                 if(AoS == "+") {curval = parseInt(curval) + 1; TalentSpent -= 1} else {curval = parseInt(curval) - 1; TalentSpent += 1;}
                 if(curval >= 1) {document.getElementById("talentworth" + position).value = curval;} else {
-                    
+
                     NewTalents -= 1;
                     TalentList[(position-1)] = 0;
                     document.getElementById("talentworth" + position).value = curval;
@@ -620,10 +631,10 @@
                 }
                 UpdateDoc();
             }
-    
+
             //POWERS
 
-            
+
             function NewPower(){
                 if(0 < document.getElementById('PowerPoints').value){
                     PowersSpent += 1;
@@ -636,13 +647,13 @@
                             break;
                         }
                     }
-                    
+
                 }else {
                     alert("Get powers by adding them from the level point chart below.")
                 }
                 UpdateDoc();
             }
-    
+
             function poweraddorsub(input)
             {
                 var AoS = input.split(",")[0];
@@ -650,7 +661,7 @@
                 var curval = document.getElementById("powerworth" + position).value;
                 if(AoS == "+") {curval = parseInt(curval) + 1; PowersSpent += 1} else {curval = parseInt(curval) - 1; PowersSpent -= 1;}
                 if(curval >= 1) {document.getElementById("powerworth" + position).value = curval;} else {
-                    
+
                     NewPowers -= 1;
                     PowersList[(position-1)] = 0;
                     document.getElementById("powerworth" + position).value = curval;
@@ -676,13 +687,13 @@
                             break;
                         }
                     }
-                    
+
                 }else {
                     alert("Get powers by adding them from the level point chart below.")
                 }
                 UpdateDoc();
             }
-    
+
             function itemaddorsub(input)
             {
                 var AoS = input.split(",")[0];
@@ -695,7 +706,7 @@
 
                 {curval = parseInt(curval) - 1; if(curval == 0) {SpentWealth -= 20} else if(curval == -1){SpentWealth -= 5;} else SpentWealth -=25;}
                 if(curval >= 0) {document.getElementById("itemworth" + position).value = curval;} else {
-                    
+
                     //NewPowers -= 1;
                     ItemList[(position-1)] = 0;
                     document.getElementById("itemworth" + position).value = curval;
@@ -911,7 +922,7 @@
                     alert("Not enough level points")
                 }
                 } else {
-                    
+
                     if(AttbType == "STR"){
                         if(LvpSTR > 0) {
                             SpentLvp += 7
@@ -975,7 +986,7 @@
                 UpdateDoc();
             }
 
-    
+
         </script>
 
 
