@@ -184,8 +184,15 @@
             #PowerPoints{
                 max-width: 40px;
             }
-            #Wealth{
-                max-width: 40px;
+            #Wealth, #Wealth2{
+                max-width: 20px;
+            }
+            .Ibonus{
+                width: 20px;
+            }
+            .Itype{
+                font-size: small;
+                width:55px;
             }
         </style>
     </head>
@@ -391,34 +398,40 @@
                         Equipment
                     </th>
                 </tr>
+                <tr><td>Current Wealth: <input id="Wealth2" value="0" readonly/></td></tr>
                 <tr>
-                    <td id="li1" style="display: inline-block;">Add Equipment:<input id="additembutton" class="Ebutton" type="button" onclick="NewItem()" value="+"><input id="Wealth2" value="0" readonly/></i></td>
+                    <td id="li1" style="display: inline-block;">Add 
+                        <select class="rOnly" onchange="ItemType_Combo(this)">
+                        <option value=" Weapon">Weapon</option>
+                        <option value=" Armor">Armor</option>
+                        <option value=" Item">Item</option>
+                    </select><input id="additembutton" class="Ebutton" type="button" onclick="NewItem()" value="+"></td>
                 </tr>
                 <tr>
                     <td>
                         <li id="item1" style="display:none;">
-                            <input type="text" value="Type item name here..." class="item" id="itemtext1"><input type="button" onclick="itemaddorsub(this.value + ',1')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth1" class="Tbutton"><input type="button" onclick="itemaddorsub(this.value + ',1')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type item name here..." class="item" id="itemtext1"><input type="button" onclick="itemaddorsub(this.value + ',1')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth1" class="Ibonus"><input value="0" readonly id="itemtype1" class="Itype"><input type="button" onclick="itemaddorsub(this.value + ',1')" value="-" class="Tbutton" readonly><input value="0" readonly id="itempenalty1" class="Tbutton">
                         </li>
                         <li id="item2" style="display:none;">
-                            <input type="text" value="Type item name here..." class="item" id="itemtext2"><input type="button" onclick="itemaddorsub(this.value + ',2')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth2" class="Tbutton"><input type="button" onclick="itemaddorsub(this.value + ',2')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type item name here..." class="item" id="itemtext2"><input type="button" onclick="itemaddorsub(this.value + ',2')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth2" class="Ibonus"><input value="0" readonly id="itemtype2" class="Itype"><input type="button" onclick="itemaddorsub(this.value + ',2')" value="-" class="Tbutton" readonly><input value="0" readonly id="itempenalty2" class="Tbutton">
                         </li>
                         <li id="item3" style="display:none;">
-                            <input type="text" value="Type item name here..." class="item" id="itemtext3"><input type="button" onclick="itemaddorsub(this.value + ',3')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth3" class="Tbutton"><input type="button" onclick="itemaddorsub(this.value + ',3')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type item name here..." class="item" id="itemtext3"><input type="button" onclick="itemaddorsub(this.value + ',3')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth3" class="Ibonus"><input value="0" readonly id="itemtype3" class="Itype"><input type="button" onclick="itemaddorsub(this.value + ',3')" value="-" class="Tbutton" readonly><input value="0" readonly id="itempenalty3" class="Tbutton">
                         </li>
                         <li id="item4" style="display:none;">
-                            <input type="text" value="Type item name here..." class="item" id="itemtext4"><input type="button" onclick="itemaddorsub(this.value + ',4')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth4" class="Tbutton"><input type="button" onclick="itemaddorsub(this.value + ',4')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type item name here..." class="item" id="itemtext4"><input type="button" onclick="itemaddorsub(this.value + ',4')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth4" class="Ibonus"><input value="0" readonly id="itemtype4" class="Itype"><input type="button" onclick="itemaddorsub(this.value + ',4')" value="-" class="Tbutton" readonly><input value="0" readonly id="itempenalty4" class="Tbutton">
                         </li>
                         <li id="item5" style="display:none;">
-                            <input type="text" value="Type item name here..." class="item" id="itemtext5"><input type="button" onclick="itemaddorsub(this.value + ',5')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth5" class="Tbutton"><input type="button" onclick="itemaddorsub(this.value + ',5')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type item name here..." class="item" id="itemtext5"><input type="button" onclick="itemaddorsub(this.value + ',5')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth5" class="Ibonus"><input value="0" readonly id="itemtype5" class="Itype"><input type="button" onclick="itemaddorsub(this.value + ',5')" value="-" class="Tbutton" readonly><input value="0" readonly id="itempenalty5" class="Tbutton">
                         </li>
                         <li id="item6" style="display:none;">
-                            <input type="text" value="Type item name here..." class="item" id="itemtext6"><input type="button" onclick="itemaddorsub(this.value + ',6')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth6" class="Tbutton"><input type="button" onclick="itemaddorsub(this.value + ',6')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type item name here..." class="item" id="itemtext6"><input type="button" onclick="itemaddorsub(this.value + ',6')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth6" class="Ibonus"><input value="0" readonly id="itemtype6" class="Itype"><input type="button" onclick="itemaddorsub(this.value + ',6')" value="-" class="Tbutton" readonly><input value="0" readonly id="itempenalty6" class="Tbutton">
                         </li>
                         <li id="item7" style="display:none;">
-                            <input type="text" value="Type item name here..." class="item" id="itemtext7"><input type="button" onclick="itemaddorsub(this.value + ',7')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth7" class="Tbutton"><input type="button" onclick="itemaddorsub(this.value + ',7')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type item name here..." class="item" id="itemtext7"><input type="button" onclick="itemaddorsub(this.value + ',7')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth7" class="Ibonus"><input value="0" readonly id="itemtype7" class="Itype"><input type="button" onclick="itemaddorsub(this.value + ',7')" value="-" class="Tbutton" readonly><input value="0" readonly id="itempenalty7" class="Tbutton">
                         </li>
                         <li id="item8" style="display:none;">
-                            <input type="text" value="Type item name here..." class="item" id="itemtext8"><input type="button" onclick="itemaddorsub(this.value + ',8')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth8" class="Tbutton"><input type="button" onclick="itemaddorsub(this.value + ',8')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type item name here..." class="item" id="itemtext8"><input type="button" onclick="itemaddorsub(this.value + ',8')" value="+" class="Tbutton" readonly><input value="0" readonly id="itemworth8" class="Ibonus"><input value="0" readonly id="itemtype8" class="Itype"><input type="button" onclick="itemaddorsub(this.value + ',8')" value="-" class="Tbutton" readonly><input value="0" readonly id="itempenalty8" class="Tbutton">
                         </li>
                     </td>
                 </tr>
@@ -526,6 +539,7 @@
             var NewTalents = 0;
             var TalentList = [0,0,0,0,0,0,0,0];
             var ItemList = [0,0,0,0,0,0,0,0];
+            var ItemType =" Weapon";
 
             //Powers
             var Powers = 0;
@@ -595,6 +609,10 @@
             {
                 hasP = parseInt(answer.value);
                 UpdateDoc();
+            }
+            function ItemType_Combo(answer){
+                ItemType = answer.value;
+                UpdateDoc;
             }
 
             function newtalent(){
@@ -683,6 +701,8 @@
                         if(ItemList[i]== 0){
                             ItemList[i] = 1;
                             document.getElementById("itemworth"+(i+1)).value = 0;
+                            document.getElementById("itempenalty"+(i+1)).value = "+2 FS or +2 FG";
+                            document.getElementById("itemtype" + (i+1)).value = ItemType;
                             document.getElementById("item" + (i+1)).style.display = "block";
                             break;
                         }
@@ -712,6 +732,14 @@
                     document.getElementById("itemworth" + position).value = curval;
                     document.getElementById("item" + (position)).style.display = 'none';
                 }
+                var penalty;
+                if(curval == 0) penalty = "+2 FS or +2 FG";
+                if(curval == 1 || curval == 2) penalty = "None";
+                if(curval >= 3) penalty = "-" + Math.floor(curval/3) + " AGI -" +Math.floor(curval/3)+ " P";
+                if(curval>=4) penalty+= (" -" + (curval - 3) + " FG");
+                if(curval >= 5) penalty+=(" -" +Math.floor(((curval - 2)/3)*5)+"ft speed")
+
+                document.getElementById("itempenalty" + (position)).value = penalty;
                 UpdateDoc();
             }
 
