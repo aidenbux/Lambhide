@@ -195,7 +195,8 @@
                 width:55px;
             }
             .penalty{
-                width:100%;
+                max-width:600px;
+                width: 90%;
             }
         </style>
     </head>
@@ -736,8 +737,8 @@
                     document.getElementById("item" + (position)).style.display = 'none';
                 }
                 var penalty;
-                var spdPen;
-                if(curval == 0) penalty = "+2 FS or +2 FG";
+                var spdPen ="";
+                
                 if(curval == 1 || curval == 2) penalty = "None";
                 if(curval >= 3) penalty = "-" + Math.floor(curval/3) + " AGI -" +Math.floor(curval/3)+ " P";
                 if(curval>=4) penalty+= (" -" + (curval - 3) + " FG");
@@ -746,9 +747,13 @@
                 if(curval >= 11) spdPen=(" -15ft speed")
                 if(curval >= 14) spdPen=(" -20ft speed")
                 if(curval >= 17) spdPen=(" -25ft speed")
-                if(curval >= 20) spdPen=(" YOU'VE GONE TO FAR, BUDDY!")
-
-                document.getElementById("itempenalty" + (position)).value = ("Penalty: " +penalty+ spdPen);
+                if(curval >= 20) spdPen=(" -30ft speed YOU'VE GOING TO FAR, BUDDY!")
+                if(curval >= 23) spdPen=(" -35ft speed")
+                if(curval >= 26) spdPen=(" -40ft speed")
+                if(curval >= 29) spdPen=(" -45ft speed")
+                if(curval >= 32) spdPen=(" -50ft speed END OF THE LINE!")
+                if(curval == 0) {document.getElementById("itempenalty" + (position)).value = "+2 FS or +2 FG";} else {document.getElementById("itempenalty" + (position)).value = ("Penalty: " +penalty+ spdPen);}
+                
                 UpdateDoc();
             }
 
