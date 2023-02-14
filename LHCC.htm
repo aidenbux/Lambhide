@@ -12,6 +12,11 @@
         <!--CSS-->
 
         <style type="text/css">
+            input{
+            max-width: 60px;
+            text-align: center;
+            border-color: transparent;
+            }
             .mainFrame{
                 padding-top: 5%;
                 display: flex;
@@ -20,18 +25,19 @@
                 justify-content: center;
                 max-width: 650px;
                 margin: auto;
-                width:100vw
+                width:99vw
             }
             .nameDesc{
                 text-align: center;
             }
-            .nameDesc input{
-                width: 100%;
+            .namer{
+                width: 70%;
+                max-width: 100%;
                 text-align: left;
                 border: solid 1px black;
             }
             .nameDesc textarea{
-                width: 100%;
+                width: 99%;
                 word-wrap: break-word;
             }
             .part1{
@@ -88,11 +94,7 @@
                 font-size: larger;
                 width: 100%;
             }
-            input{
-            max-width: fit-content;
-            text-align: center;
-            border-color: transparent;
-            }
+            
             .PYoN{
                 width: 300px;
                 margin: 15px auto;
@@ -158,8 +160,8 @@
                 text-align: center;
             }
             .part4 .power{
-                width: 65%;
-                max-width: 65%;
+                width: 75%;
+                max-width: 75%;
             }
             .lvpChart{
                 text-align: center;
@@ -198,13 +200,16 @@
                 max-width:600px;
                 width: 90%;
             }
+            .Cost{
+                width: 40px;
+            }
         </style>
     </head>
 
     <body class="mainFrame">
         <div class="part1">
             <div class="nameDesc">
-                Name<input type="text" style="width: 100%;">
+                Name <input type="text" class="namer">
                 <hr>
                 Description<br><textarea rows="3"></textarea>
             </div>
@@ -362,28 +367,28 @@
                 <tr>
                     <td>
                         <li id="power1" style="display:none;">
-                            <input type="text" value="Type power name here..." class="power" id="powertext1"><input type="button" onclick="poweraddorsub(this.value + ',1')" value="+" class="Tbutton" readonly><input value="0" readonly id="powerworth1" class="Tbutton"><input type="button" onclick="poweraddorsub(this.value + ',1')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type power name here..." class="power" id="powertext1"><input type="button" onclick="poweraddorsub(this.value + ',1')" value="-" class="Tbutton" readonly>
                         </li>
                         <li id="power2" style="display:none;">
-                            <input type="text" value="Type power name here..." class="power" id="powertext2"><input type="button" onclick="poweraddorsub(this.value + ',2')" value="+" class="Tbutton" readonly><input value="0" readonly id="powerworth2" class="Tbutton"><input type="button" onclick="poweraddorsub(this.value + ',2')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type power name here..." class="power" id="powertext2"><input type="button" onclick="poweraddorsub(this.value + ',2')" value="-" class="Tbutton" readonly>
                         </li>
                         <li id="power3" style="display:none;">
-                            <input type="text" value="Type power name here..." class="power" id="powertext3"><input type="button" onclick="poweraddorsub(this.value + ',3')" value="+" class="Tbutton" readonly><input value="0" readonly id="powerworth3" class="Tbutton"><input type="button" onclick="poweraddorsub(this.value + ',3')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type power name here..." class="power" id="powertext3"><input type="button" onclick="poweraddorsub(this.value + ',3')" value="-" class="Tbutton" readonly>
                         </li>
                         <li id="power4" style="display:none;">
-                            <input type="text" value="Type power name here..." class="power" id="powertext4"><input type="button" onclick="poweraddorsub(this.value + ',4')" value="+" class="Tbutton" readonly><input value="0" readonly id="powerworth4" class="Tbutton"><input type="button" onclick="poweraddorsub(this.value + ',4')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type power name here..." class="power" id="powertext4"><input type="button" onclick="poweraddorsub(this.value + ',4')" value="-" class="Tbutton" readonly>
                         </li>
                         <li id="power5" style="display:none;">
-                            <input type="text" value="Type power name here..." class="power" id="powertext5"><input type="button" onclick="poweraddorsub(this.value + ',5')" value="+" class="Tbutton" readonly><input value="0" readonly id="powerworth5" class="Tbutton"><input type="button" onclick="poweraddorsub(this.value + ',5')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type power name here..." class="power" id="powertext5"><input type="button" onclick="poweraddorsub(this.value + ',5')" value="-" class="Tbutton" readonly>
                         </li>
                         <li id="power6" style="display:none;">
-                            <input type="text" value="Type power name here..." class="power" id="powertext6"><input type="button" onclick="poweraddorsub(this.value + ',6')" value="+" class="Tbutton" readonly><input value="0" readonly id="powerworth6" class="Tbutton"><input type="button" onclick="poweraddorsub(this.value + ',6')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type power name here..." class="power" id="powertext6"><input type="button" onclick="poweraddorsub(this.value + ',6')" value="-" class="Tbutton" readonly>
                         </li>
                         <li id="power7" style="display:none;">
-                            <input type="text" value="Type power name here..." class="power" id="powertext7"><input type="button" onclick="poweraddorsub(this.value + ',7')" value="+" class="Tbutton" readonly><input value="0" readonly id="powerworth7" class="Tbutton"><input type="button" onclick="poweraddorsub(this.value + ',7')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type power name here..." class="power" id="powertext7"><input type="button" onclick="poweraddorsub(this.value + ',7')" value="-" class="Tbutton" readonly>
                         </li>
                         <li id="power8" style="display:none;">
-                            <input type="text" value="Type power name here..." class="power" id="powertext8"><input type="button" onclick="poweraddorsub(this.value + ',8')" value="+" class="Tbutton" readonly><input value="0" readonly id="powerworth8" class="Tbutton"><input type="button" onclick="poweraddorsub(this.value + ',8')" value="-" class="Tbutton" readonly>
+                            <input type="text" value="Type power name here..." class="power" id="powertext8"><input type="button" onclick="poweraddorsub(this.value + ',8')" value="-" class="Tbutton" readonly>
                         </li>
                     </td>
                 </tr>
@@ -452,25 +457,25 @@
                     <td colspan="6" style="text-align: left;">COST</td>
                 </thead>
                 <tr>
-                    <td>1</td><td>+10 Wealth</td><td><input type="button" onclick="LvpWealthaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpWealth" value="0"></td><td><input type="button" onclick="LvpWealthaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">1</td><td>+10 Wealth</td><td><input type="button" onclick="LvpWealthaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpWealth" value="0"></td><td><input type="button" onclick="LvpWealthaddorsub(this.value)" value="+"readonly></td>
                 </tr>
                 <tr>
-                    <td>2</td><td>+1 Talent</td><td><input type="button" onclick="LvpTalentaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpTalents" value="0"></td><td><input type="button" onclick="LvpTalentaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">2</td><td>+1 Talent</td><td><input type="button" onclick="LvpTalentaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpTalents" value="0"></td><td><input type="button" onclick="LvpTalentaddorsub(this.value)" value="+"readonly></td>
                 </tr>
                 <tr>
-                    <td>3</td><td>+1 Vitality</td><td><input type="button" onclick="LvpVitalityaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpVit" value="0"></td><td><input type="button" onclick="LvpVitalityaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">3</td><td>+1 Vitality</td><td><input type="button" onclick="LvpVitalityaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpVit" value="0"></td><td><input type="button" onclick="LvpVitalityaddorsub(this.value)" value="+"readonly></td>
                 </tr>
                 <tr>
-                    <td>3</td><td>New Power</td><td><input type="button" onclick="LvpPowersaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpPowers" value="0"></td><td><input type="button" onclick="LvpPowersaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">3</td><td>New Power</td><td><input type="button" onclick="LvpPowersaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpPowers" value="0"></td><td><input type="button" onclick="LvpPowersaddorsub(this.value)" value="+"readonly></td>
                 </tr>
                 <tr>
-                    <td>4</td><td>+1 Power Score</td><td><input type="button" onclick="LvpPwsaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpPws" value="0"></td><td><input type="button" onclick="LvpPwsaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">4</td><td>+1 Power Score</td><td><input type="button" onclick="LvpPwsaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpPws" value="0"></td><td><input type="button" onclick="LvpPwsaddorsub(this.value)" value="+"readonly></td>
                 <tr>
-                    <td>5</td><td>Luck Die</td><td><input type="button" onclick="LvpLuckaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpLuck" value="0"></td><td><input type="button" onclick="LvpLuckaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">5</td><td>Luck Die</td><td><input type="button" onclick="LvpLuckaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpLuck" value="0"></td><td><input type="button" onclick="LvpLuckaddorsub(this.value)" value="+"readonly></td>
                 <tr>
-                    <td>6</td><td>+5ft Speed (max 50ft)</td><td><input type="button" onclick="LvpSpeedaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpSpeed" value="0"></td><td><input type="button" onclick="LvpSpeedaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">6</td><td>+5ft Speed (max 50ft)</td><td><input type="button" onclick="LvpSpeedaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpSpeed" value="0"></td><td><input type="button" onclick="LvpSpeedaddorsub(this.value)" value="+"readonly></td>
                 <tr>
-                    <td>7</td><td colspan="4">Upgrade Attribute Die</td>
+                    <td class="Cost">7</td><td colspan="4">Upgrade Attribute Die</td>
                 </tr>
                 <tr>
                     <td colspan="5">
@@ -488,7 +493,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>8</td><td>Risen Point</td><td><input type="button" onclick="LvpRisenaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpRisen" value="0"></td><td><input type="button" onclick="LvpRisenaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">8</td><td>Risen Point</td><td><input type="button" onclick="LvpRisenaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpRisen" value="0"></td><td><input type="button" onclick="LvpRisenaddorsub(this.value)" value="+"readonly></td>
                 </tr>
                 <tr>
                     <td style="height: 20px; border: 0;" colspan="6"><h3>Current Level Points:<br><input type="text" class="rOnly" id="LevelPoints2" value="0" readonly/><br></h3></td>
@@ -664,7 +669,6 @@
                     for (let i = 0; i<7; i++) {
                         if(PowersList[i]== 0){
                             PowersList[i] = 1;
-                            document.getElementById("powerworth"+(i+1)).value = 1;
                             document.getElementById("power" + (i+1)).style.display = "block";
                             break;
                         }
@@ -680,15 +684,12 @@
             {
                 var AoS = input.split(",")[0];
                 var position = input.split(",")[1];
-                var curval = document.getElementById("powerworth" + position).value;
-                if(AoS == "+") {curval = parseInt(curval) + 1; PowersSpent += 1} else {curval = parseInt(curval) - 1; PowersSpent -= 1;}
-                if(curval >= 1) {document.getElementById("powerworth" + position).value = curval;} else {
-
-                    NewPowers -= 1;
-                    PowersList[(position-1)] = 0;
-                    document.getElementById("powerworth" + position).value = curval;
-                    document.getElementById("power" + (position)).style.display = 'none';
-                }
+                PowersSpent -= 1;
+                NewPowers -= 1;
+                PowersList[(position-1)] = 0;
+                
+                document.getElementById("power" + (position)).style.display = 'none';
+                
                 UpdateDoc();
             }
 
