@@ -782,11 +782,10 @@
                 if (Itype!=" Armor"||Itype!=" Weapon"||Itype!=" Item") {
                     if(curval >= 1) {document.getElementById("itemworth" + position).value = curval;} else 
                     {
-
-ItemList[(position-1)] = 0;
-document.getElementById("itemworth" + position).value = curval;
-document.getElementById("item" + (position)).style.display = 'none';
-}
+                        ItemList[(position-1)] = 0;
+                        document.getElementById("itemworth" + position).value = curval;
+                        document.getElementById("item" + (position)).style.display = 'none';
+                    }
                 }
 
                 //Penalties
