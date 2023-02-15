@@ -205,7 +205,7 @@
                 width: 40px;
             }
             #li2{
-                width: 70px;
+                width: 50px;
             }
         </style>
     </head>
@@ -708,17 +708,20 @@
             function NewItem(){
                 if(4 < document.getElementById('Wealth').value){
                     SpentWealth += 5;
+                    var iworth = 0;
                     if(ItemType == " Power Channel") {
                         SpentWealth += 45;
+                        iworth++;
                     }
                     if(ItemType == " Recovery Pws" ||ItemType == " Recovery Vitality"){
                         SpentWealth -=3;
+                        iworth++;
                     }
                     //NewItemHere += 1;
                     for (let i = 0; i<7; i++) {
                         if(ItemList[i]== 0){
                             ItemList[i] = 1;
-                            document.getElementById("itemworth"+(i+1)).value = 0;
+                            document.getElementById("itemworth"+(i+1)).value = iworth;
                             document.getElementById("itempenalty"+(i+1)).value = "+2 FS or +2 FG";
                             document.getElementById("itemtype" + (i+1)).value = ItemType;
                             document.getElementById("item" + (i+1)).style.display = "block";
@@ -743,10 +746,10 @@
                 if(AoS == "+"){
 
                     curval = parseInt(curval) + 1; 
-                    if(ItemType == " Recovery Pws" ||ItemType == " Recovery Vitality"){
+                    if(Itype == " Recovery Pws" ||Itype == " Recovery Vitality"){
                         SpentWealth +=2;
                     } 
-                    else if(ItemType == " Power Channel") {
+                    else if(Itype == " Power Channel") {
                         SpentWealth += 50;
                     } else{
                         if(curval == 1) {SpentWealth += 20} else SpentWealth +=25;
@@ -757,10 +760,10 @@
                 else {
                     curval = parseInt(curval) - 1;
                     
-                    if(ItemType == " Recovery Pws" ||ItemType == " Recovery Vitality"){
+                    if(Itype == " Recovery Pws" ||Itype == " Recovery Vitality"){
                         SpentWealth -=2;
                     } 
-                    else if(ItemType == " Power Channel") {
+                    else if(Itype == " Power Channel") {
                         SpentWealth -= 50;
                     } else{
                     if(curval == 0) {SpentWealth -= 20} else if(curval == -1){SpentWealth -= 5;} else SpentWealth -=25;
@@ -775,6 +778,15 @@
                     ItemList[(position-1)] = 0;
                     document.getElementById("itemworth" + position).value = curval;
                     document.getElementById("item" + (position)).style.display = 'none';
+                }
+                if (Itype!=" Armor"||Itype!=" Weapon"||Itype!=" Item") {
+                    if(curval >= 1) {document.getElementById("itemworth" + position).value = curval;} else 
+                    {
+
+ItemList[(position-1)] = 0;
+document.getElementById("itemworth" + position).value = curval;
+document.getElementById("item" + (position)).style.display = 'none';
+}
                 }
 
                 //Penalties
