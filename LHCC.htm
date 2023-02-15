@@ -204,6 +204,9 @@
             .Cost{
                 width: 40px;
             }
+            #li2{
+                width: 70px;
+            }
         </style>
     </head>
 
@@ -410,11 +413,14 @@
                 </tr>
                 <tr><td>Current Wealth: <input id="Wealth2" value="0" readonly/></td></tr>
                 <tr>
-                    <td id="li1" style="display: inline-block;">Add 
+                    <td id="li2" style="display: inline-block;">Add 
                         <select class="rOnly" onchange="ItemType_Combo(this)">
                         <option value=" Weapon">Weapon</option>
                         <option value=" Armor">Armor</option>
                         <option value=" Item">Item</option>
+                        <option value=" Power Channel">Power Channel</option>
+                        <option value=" Recovery Vitality">Recovery Vitality</option>
+                        <option value=" Recovery Pws">Recovery PowerScore</option>
                     </select><input id="additembutton" class="Ebutton" type="button" onclick="NewItem()" value="+"></td>
                 </tr>
                 <tr>
@@ -702,6 +708,12 @@
             function NewItem(){
                 if(4 < document.getElementById('Wealth').value){
                     SpentWealth += 5;
+                    if(ItemType == " Power Channel") {
+                        SpentWealth += 45;
+                    }
+                    if(ItemType == " Recovery Pws" ||ItemType == " Recovery Vitality"){
+                        SpentWealth -=3;
+                    }
                     //NewItemHere += 1;
                     for (let i = 0; i<7; i++) {
                         if(ItemList[i]== 0){
@@ -725,36 +737,72 @@
                 var AoS = input.split(",")[0];
                 var position = input.split(",")[1];
                 var curval = document.getElementById("itemworth" + position).value;
-                if(AoS == "+") 
-                {curval = parseInt(curval) + 1; if(curval == 1) {SpentWealth += 20} else SpentWealth +=25;} 
+                var Itype = document.getElementById("itemtype" + position).value;
 
-                else 
+                //Adding Itemworth
+                if(AoS == "+"){
 
-                {curval = parseInt(curval) - 1; if(curval == 0) {SpentWealth -= 20} else if(curval == -1){SpentWealth -= 5;} else SpentWealth -=25;}
+                    curval = parseInt(curval) + 1; 
+                    if(ItemType == " Recovery Pws" ||ItemType == " Recovery Vitality"){
+                        SpentWealth +=2;
+                    } 
+                    else if(ItemType == " Power Channel") {
+                        SpentWealth += 50;
+                    } else{
+                        if(curval == 1) {SpentWealth += 20} else SpentWealth +=25;
+                    }
+                } 
+
+                //Subtracting Itemworth
+                else {
+                    curval = parseInt(curval) - 1;
+                    
+                    if(ItemType == " Recovery Pws" ||ItemType == " Recovery Vitality"){
+                        SpentWealth -=2;
+                    } 
+                    else if(ItemType == " Power Channel") {
+                        SpentWealth -= 50;
+                    } else{
+                    if(curval == 0) {SpentWealth -= 20} else if(curval == -1){SpentWealth -= 5;} else SpentWealth -=25;
+                    }
+                }
+                
+
+
+                //If Item removed
                 if(curval >= 0) {document.getElementById("itemworth" + position).value = curval;} else {
 
-                    //NewPowers -= 1;
                     ItemList[(position-1)] = 0;
                     document.getElementById("itemworth" + position).value = curval;
                     document.getElementById("item" + (position)).style.display = 'none';
                 }
+
+                //Penalties
                 var penalty;
                 var spdPen ="";
+                if(document.getElementById("itemtype" + position).value == " Armor"){
+                    if(curval == 1 || curval == 2) penalty = "None";
+                    if(curval >= 3) penalty = "-" + Math.floor(curval/3) + " AGI -" +Math.floor(curval/3)+ " P";
+                    if(curval>=4) penalty+= (" -" + (curval - 3) + " FG");
+                    if(curval >= 5) spdPen=(" -5ft speed")
+                    if(curval >= 8) spdPen=(" -10ft speed")
+                    if(curval >= 11) spdPen=(" -15ft speed")
+                    if(curval >= 14) spdPen=(" -20ft speed")
+                    if(curval >= 17) spdPen=(" -25ft speed")
+                    if(curval >= 20) spdPen=(" -30ft speed YOU'VE GOING TO FAR, BUDDY!")
+                    if(curval >= 23) spdPen=(" -35ft speed")
+                    if(curval >= 26) spdPen=(" -40ft speed")
+                    if(curval >= 29) spdPen=(" -45ft speed")
+                    if(curval >= 32) spdPen=(" -50ft speed END OF THE LINE!")
+                    if(curval == 0) {document.getElementById("itempenalty" + (position)).value = "+2 FS or +2 FG";} else {document.getElementById("itempenalty" + (position)).value = ("Penalty: " +penalty+ spdPen);}
+                } else if (document.getElementById("itemtype" + position).value == " Weapon") {
+                    if(curval == 1 || curval == 2) penalty = "None";
+                    if(curval >= 3) penalty = "-" + Math.floor(curval - 2) + " FG";
+                    if(curval == 0) {document.getElementById("itempenalty" + (position)).value = "+2 FS or +2 FG";} else {document.getElementById("itempenalty" + (position)).value = ("Penalty: " +penalty);}
+                } else {
+                    document.getElementById("itempenalty" + (position)).value = ("Penalty: " +"None")
+                }
                 
-                if(curval == 1 || curval == 2) penalty = "None";
-                if(curval >= 3) penalty = "-" + Math.floor(curval/3) + " AGI -" +Math.floor(curval/3)+ " P";
-                if(curval>=4) penalty+= (" -" + (curval - 3) + " FG");
-                if(curval >= 5) spdPen=(" -5ft speed")
-                if(curval >= 8) spdPen=(" -10ft speed")
-                if(curval >= 11) spdPen=(" -15ft speed")
-                if(curval >= 14) spdPen=(" -20ft speed")
-                if(curval >= 17) spdPen=(" -25ft speed")
-                if(curval >= 20) spdPen=(" -30ft speed YOU'VE GOING TO FAR, BUDDY!")
-                if(curval >= 23) spdPen=(" -35ft speed")
-                if(curval >= 26) spdPen=(" -40ft speed")
-                if(curval >= 29) spdPen=(" -45ft speed")
-                if(curval >= 32) spdPen=(" -50ft speed END OF THE LINE!")
-                if(curval == 0) {document.getElementById("itempenalty" + (position)).value = "+2 FS or +2 FG";} else {document.getElementById("itempenalty" + (position)).value = ("Penalty: " +penalty+ spdPen);}
                 
                 UpdateDoc();
             }
