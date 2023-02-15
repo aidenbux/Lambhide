@@ -516,7 +516,7 @@
 
         </div>
 
-
+        
 
         <script type="text/javascript">
             var STRDIE = 0;
@@ -1030,6 +1030,11 @@
                     alert("Not enough level points")
                 }
                 } else {
+
+                    document.getElementById("STRwLvp").value = "d"+(STRDIE);
+                    document.getElementById("AGIwLvp").value = "d"+(AGIDIE);
+                    document.getElementById("WITwLvp").value = "d"+(WITDIE);
+                    document.getElementById("EGOwLvp").value = "d"+(EGODIE);
 
                     if(AttbType == "STR"){
                         if(LvpSTR > 0) {
