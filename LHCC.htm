@@ -205,7 +205,7 @@
                 width: 40px;
             }
             #li2{
-                width: 50px;
+                width: 40px;
             }
         </style>
     </head>
@@ -722,7 +722,12 @@
                         if(ItemList[i]== 0){
                             ItemList[i] = 1;
                             document.getElementById("itemworth"+(i+1)).value = iworth;
-                            document.getElementById("itempenalty"+(i+1)).value = "+2 FS or +2 FG";
+                            if (Itype!=" Armor"||Itype!=" Weapon"||Itype!=" Item") {
+                                document.getElementById("itempenalty"+(i+1)).value = "";
+                            } else{
+                                document.getElementById("itempenalty"+(i+1)).value = "+2 FS or +2 FG";
+                            }
+                            
                             document.getElementById("itemtype" + (i+1)).value = ItemType;
                             document.getElementById("item" + (i+1)).style.display = "block";
                             break;
@@ -811,7 +816,7 @@
                     if(curval >= 3) penalty = "-" + Math.floor(curval - 2) + " FG";
                     if(curval == 0) {document.getElementById("itempenalty" + (position)).value = "+2 FS or +2 FG";} else {document.getElementById("itempenalty" + (position)).value = ("Penalty: " +penalty);}
                 } else {
-                    document.getElementById("itempenalty" + (position)).value = ("Penalty: " +"None")
+                    document.getElementById("itempenalty" + (position)).value = ("")
                 }
                 
                 
