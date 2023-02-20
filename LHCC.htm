@@ -784,7 +784,7 @@
                     document.getElementById("itemworth" + position).value = curval;
                     document.getElementById("item" + (position)).style.display = 'none';
                 }
-                if (Itype!=" Armor"||Itype!=" Weapon"||Itype!=" Item") {
+                if (Itype!=" Armor"&&Itype!=" Weapon"&&Itype!=" Item") {
                     if(curval >= 1) {document.getElementById("itemworth" + position).value = curval;} else 
                     {
                         ItemList[(position-1)] = 0;
