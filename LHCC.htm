@@ -724,7 +724,7 @@
                         if(ItemList[i]== 0){
                             ItemList[i] = 1;
                             document.getElementById("itemworth"+(i+1)).value = iworth;
-                            if (ItemType != " Armor" || ItemType != " Weapon" || ItemType != " Item") {
+                            if (ItemType != " Armor" && ItemType != " Weapon" && ItemType != " Item") {
                                 document.getElementById("itempenalty"+(i+1)).value = "";
                             } else{
                                 document.getElementById("itempenalty"+(i+1)).value = "+2 FS or +2 FG";
