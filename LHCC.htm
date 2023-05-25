@@ -222,6 +222,62 @@ a:hover
             .Ebutton{
                 Min-width: 25px;
             }
+
+            .printOut{
+                visibility: hidden;
+                display: block;
+                margin: auto;
+                max-width: 700px;
+                padding: 10px;
+                border: 1px solid lightgray;
+            }
+.Fcontainer {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: auto;
+  align-content: start;
+}
+/* .Fcontainer:after {
+  display: block;
+  content: " placeholder ";
+  margin: 2px;
+  flex: 999 999 auto;
+} */
+.HFitem {
+    background-color: black;
+    color: white;
+    font-size: small;
+    text-align: center;
+  flex: 1 1 auto;
+  margin: 2px;
+}
+.AFitem{
+    width: 25%;
+    min-width: 77px;
+}
+.Fitem {
+    text-align: center;
+  flex: 1 1 auto;
+  margin: 2px;
+}
+.Fitem input{
+    border: 1px solid lightgray;
+    max-width: 500px; 
+    width: 90%;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+.Fitem textarea{
+    border: 1px solid lightgray;
+    max-width: 500px; 
+    width: 85%;
+    margin-left: 2px;
+    margin-right: 2px;
+    height: 200px;    
+    text-align: center;
+}
         </style>
     </head>
 
@@ -230,10 +286,12 @@ a:hover
             <a href="index.html"><h1 style="width: 100%; text-align: center;">←</h1></a>
             <a href="index.html"><h1 style="width: 100%; text-align: center;">LAMBHIDE</h1></a>
             <h3 style="width: 100%; text-align: center;">Character Creator</h3>
+            <p>The Lambhide Character Creator is not perfect and lacks some options available in the rules. Make sure to double check your character sheet and compare it to the rules as written as a final step.</p>
+            <br/>
             <div class="nameDesc">
-                Name <input type="text" class="namer">
+                Name <input type="text" class="namer" id="namerid">
                 <hr>
-                Description<br><textarea rows="3"></textarea>
+                Description<br><textarea rows="3" id="descid"></textarea>
             </div>
             <div name="attb" class="attb">
                 ATTRIBUTES
@@ -284,7 +342,7 @@ a:hover
                         </td>
                     </tr>
                     <tr id="LvpAttbRow" style="display: none;">
-                        <td><input id="STRwLvp" value="0"></td><td><input id="AGIwLvp" value="0"></td><td><input id="WITwLvp" value="0"></td><td><input id="EGOwLvp" value="0"></td>
+                        <td><input id="STRwLvp" value="0" readonly></td><td><input id="AGIwLvp" value="0" readonly></td><td><input id="WITwLvp" value="0" readonly></td><td><input id="EGOwLvp" value="0" readonly></td>
                     </tr>
                 </table>
                 <table class="attbLimitLvpTotal">
@@ -433,12 +491,12 @@ a:hover
                 <tr>
                     <td style="display: inline-block;">Add 
                         <select id="li2" class="rOnly" onchange="ItemType_Combo(this)">
-                        <option value=" Weapon">Weapon</option>
-                        <option value=" Armor">Armor</option>
-                        <option value=" Item">Item</option>
-                        <option value=" Power Channel">Power Channel</option>
-                        <option value=" Recovery Vitality">Recovery Vitality</option>
-                        <option value=" Recovery Pws">Recovery PowerScore</option>
+                        <option value="Weapon">Weapon</option>
+                        <option value="Armor">Armor</option>
+                        <option value="Item">Item</option>
+                        <option value="Power Channel">Power Channel</option>
+                        <option value="Recover Vit">Recovery Vitality</option>
+                        <option value="Recover Pws">Recovery PowerScore</option>
                     </select><input id="additembutton" class="Ebutton" type="button" onclick="NewItem()" value="+"></td>
                 </tr>
                 <tr>
@@ -482,23 +540,23 @@ a:hover
                     <td colspan="6" style="text-align: left;">COST</td>
                 </thead>
                 <tr>
-                    <td class="Cost">1</td><td>+10 Wealth</td><td><input type="button" onclick="LvpWealthaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpWealth" value="0"></td><td><input type="button" onclick="LvpWealthaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">1</td><td>+10 Wealth</td><td><input type="button" onclick="LvpWealthaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpWealth" value="0" readonly></td><td><input type="button" onclick="LvpWealthaddorsub(this.value)" value="+"readonly></td>
                 </tr>
                 <tr>
-                    <td class="Cost">2</td><td>+1 Talent</td><td><input type="button" onclick="LvpTalentaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpTalents" value="0"></td><td><input type="button" onclick="LvpTalentaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">2</td><td>+1 Talent</td><td><input type="button" onclick="LvpTalentaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpTalents" value="0" readonly></td><td><input type="button" onclick="LvpTalentaddorsub(this.value)" value="+"readonly></td>
                 </tr>
                 <tr>
-                    <td class="Cost">3</td><td>+1 Vitality</td><td><input type="button" onclick="LvpVitalityaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpVit" value="0"></td><td><input type="button" onclick="LvpVitalityaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">3</td><td>+1 Vitality</td><td><input type="button" onclick="LvpVitalityaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpVit" value="0" readonly></td><td><input type="button" onclick="LvpVitalityaddorsub(this.value)" value="+"readonly></td>
                 </tr>
                 <tr>
-                    <td class="Cost">3</td><td>New Power</td><td><input type="button" onclick="LvpPowersaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpPowers" value="0"></td><td><input type="button" onclick="LvpPowersaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">3</td><td>New Power</td><td><input type="button" onclick="LvpPowersaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpPowers" value="0" readonly></td><td><input type="button" onclick="LvpPowersaddorsub(this.value)" value="+"readonly></td>
                 </tr>
                 <tr>
-                    <td class="Cost">4</td><td>+1 Power Score</td><td><input type="button" onclick="LvpPwsaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpPws" value="0"></td><td><input type="button" onclick="LvpPwsaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">4</td><td>+1 Power Score</td><td><input type="button" onclick="LvpPwsaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpPws" value="0" readonly></td><td><input type="button" onclick="LvpPwsaddorsub(this.value)" value="+"readonly></td>
                 <tr>
-                    <td class="Cost">5</td><td>Luck Die</td><td><input type="button" onclick="LvpLuckaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpLuck" value="0"></td><td><input type="button" onclick="LvpLuckaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">5</td><td>Luck Die</td><td><input type="button" onclick="LvpLuckaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpLuck" value="0" readonly></td><td><input type="button" onclick="LvpLuckaddorsub(this.value)" value="+"readonly></td>
                 <tr>
-                    <td class="Cost">6</td><td>+5ft Speed (max 50ft)</td><td><input type="button" onclick="LvpSpeedaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpSpeed" value="0"></td><td><input type="button" onclick="LvpSpeedaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">6</td><td>+5ft Speed (max 50ft)</td><td><input type="button" onclick="LvpSpeedaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpSpeed" value="0" readonly></td><td><input type="button" onclick="LvpSpeedaddorsub(this.value)" value="+"readonly></td>
                 <tr>
                     <td class="Cost">7</td><td colspan="4">Upgrade Attribute Die</td>
                 </tr>
@@ -509,16 +567,16 @@ a:hover
                                 <td>STR</td><td>AGI</td><td>WIT</td><td>EGO</td>
                             </tr>
                             <tr>
-                                <td><input type="button" onclick="LvpAttbaddorsub(this.value + ',STR')" value="-" readonly><input type="text" id="LvpAttbSTR" value="0"><input type="button" onclick="LvpAttbaddorsub(this.value + ',STR')" value="+"readonly></td>
-                                <td><input type="button" onclick="LvpAttbaddorsub(this.value + ',AGI')" value="-" readonly><input type="text" id="LvpAttbAGI" value="0"><input type="button" onclick="LvpAttbaddorsub(this.value + ',AGI')" value="+"readonly></td>
-                                <td><input type="button" onclick="LvpAttbaddorsub(this.value + ',WIT')" value="-" readonly><input type="text" id="LvpAttbWIT" value="0"><input type="button" onclick="LvpAttbaddorsub(this.value + ',WIT')" value="+"readonly></td>
-                                <td><input type="button" onclick="LvpAttbaddorsub(this.value + ',EGO')" value="-" readonly><input type="text" id="LvpAttbEGO" value="0"><input type="button" onclick="LvpAttbaddorsub(this.value + ',EGO')" value="+"readonly></td>
+                                <td><input type="button" onclick="LvpAttbaddorsub(this.value + ',STR')" value="-" readonly><input type="text" id="LvpAttbSTR" value="0"readonly><input type="button" onclick="LvpAttbaddorsub(this.value + ',STR')" value="+"readonly></td>
+                                <td><input type="button" onclick="LvpAttbaddorsub(this.value + ',AGI')" value="-" readonly><input type="text" id="LvpAttbAGI" value="0"readonly><input type="button" onclick="LvpAttbaddorsub(this.value + ',AGI')" value="+"readonly></td>
+                                <td><input type="button" onclick="LvpAttbaddorsub(this.value + ',WIT')" value="-" readonly><input type="text" id="LvpAttbWIT" value="0"readonly><input type="button" onclick="LvpAttbaddorsub(this.value + ',WIT')" value="+"readonly></td>
+                                <td><input type="button" onclick="LvpAttbaddorsub(this.value + ',EGO')" value="-" readonly><input type="text" id="LvpAttbEGO" value="0"readonly><input type="button" onclick="LvpAttbaddorsub(this.value + ',EGO')" value="+"readonly></td>
                             </tr>
                         </table>
                     </td>
                 </tr>
                 <tr>
-                    <td class="Cost">8</td><td>Risen Point</td><td><input type="button" onclick="LvpRisenaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpRisen" value="0"></td><td><input type="button" onclick="LvpRisenaddorsub(this.value)" value="+"readonly></td>
+                    <td class="Cost">8</td><td>Risen Point</td><td><input type="button" onclick="LvpRisenaddorsub(this.value)" value="-" readonly></td><td><input type="text" id="LvpRisen" value="0"readonly></td><td><input type="button" onclick="LvpRisenaddorsub(this.value)" value="+"readonly></td>
                 </tr>
                 <tr>
                     <td style="height: 20px; border: 0;" colspan="6"><h3>Current Level Points:<br><input type="text" class="rOnly" id="LevelPoints2" value="0" readonly/><br></h3></td>
@@ -531,12 +589,146 @@ a:hover
                 </tr> -->
             </table>
         </div>
+        <br/>
+        <button onclick="ViewCharSheet()"> GENERATE PRINTABLE CHARACTER SHEET</button>
+        <br/>
+        <button id="printOutIDbutton" style="visibility: hidden;" onclick="PrintElem()">DOWNLOAD OR PRINT</button>
+        <div class="printOut" id="printOutID">
+            <h1 style="display: block; margin: auto; text-align: center;">LAMBHIDE</h1>
+            <H3 style="display: block; margin: auto; text-align: center;">CHARACTER SHEET</H3>
+            <div class="Fcontainer">
+                <div class="Fitem">
+                    <table style="width: 100%;">
+                        <tr style="background-color: black; color: white;"><td>CHARACTER NAME</td></tr>
+                        <tr><td><input id="POName" type="text" readonly/></td></tr>
+                    </table>
+                </div>
+                
+            </div>
+            <div class="Fcontainer">
+                <div class="Fitem">
+                    <table style="width: 100%;">
+                        <tr style="background-color: black; color: white;"><td>DESCRIPTION</td></tr>
+                        <tr><td><textarea style="width: 100%;" id="PODesc" type="text" readonly></textarea></td></tr>
+                    </table>
+                </div>
+                
+            </div>
+            
+            <div class="Fcontainer">
+                <div class="HFitem">
+                    ATTRIBUTES
+                </div>
+                
+            </div>
+            <div class="Fcontainer">
+                <div class="HFitem AFitem">
+                    STRENGTH
+                </div>
+                <div class="HFitem AFitem">
+                    AGILITY
+                </div>
+                <div class="HFitem AFitem">
+                    WIT
+                </div>
+                <div class="HFitem AFitem">
+                    EGO
+                </div>
+            </div>
+            <div class="Fcontainer">
+                <div class="Fitem">
+                    <input id="POStr" type="text" readonly/>
+                </div>
+                <div class="Fitem">
+                    <input id="POAgi" type="text" readonly/>
+                </div>
+                <div class="Fitem">
+                    <input id="POWit" type="text" readonly/>
+                </div>
+                <div class="Fitem">
+                    <input id="POEgo" type="text" readonly/>
+                </div>
+            </div>
+            <div class="Fcontainer">
+                <div class="HFitem">
+                    STATS
+                </div>
+                
+            </div>
+            <div class="Fcontainer">
+                <div class="Fitem">
+                    <table style="width: 100%;">
+                        <tr style="background-color: black; color: white;"><td>VITALITY</td></tr>
+                        <tr><td><input id="POVit" type="text" readonly/></td></tr>
+                    </table>
+                </div>
+                <div class="Fitem">
+                    <table style="width: 100%;">
+                        <tr style="background-color: black; color: white;"><td>ARMOR</td></tr>
+                        <tr><td><input id="POArmor" type="text" readonly/></td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="Fcontainer">
+                <div class="Fitem">
+                    
+                </div>
+                <div class="Fitem">
+                    
+                </div>
+            </div>
+            <div class="Fcontainer">
+                <div class="Fitem">
+                    <table style="width: 100%;">
+                        <tr style="background-color: black; color: white;"><td>SPEED</td></tr>
+                        <tr><td><input id="POSpd" type="text" readonly/></td></tr>
+                    </table>
+                </div>
+                <div class="Fitem">
+                    <table style="width: 100%;">
+                        <tr style="background-color: black; color: white;"><td>POWER SCORE</td></tr>
+                        <tr><td><input id="POPws" type="text" readonly/></td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="Fcontainer">
+                <div class="Fitem">
+                    <table style="width: 100%;">
+                        <tr style="background-color: black; color: white;"><td>LUCK DIE</td></tr>
+                        <tr><td><input id="POLuck" type="text" readonly/></td></tr>
+                    </table>
+                </div>
+                <div class="Fitem">
+                    <table style="width: 100%;">
+                        <tr style="background-color: black; color: white;"><td>RISEN POINTS</td></tr>
+                        <tr><td><input id="PORisen" type="text" readonly/></td></tr>
+                    </table>
+                </div>
+                <div class="Fitem">
+                    <table style="width: 100%;">
+                        <tr style="background-color: black; color: white;"><td>LEVEL POINTS</td></tr>
+                        <tr><td><input id="POLvl" type="text" readonly/></td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="Fcontainer">
+                <div class="Fitem">
+                    <table style="width: 100%;">
+                        <tr style="background-color: black; color: white;"><td>TALENTS, POWERS, & ITEMS</td><td style="width: 22%;">BONUS</td><td style="width: 26%;">TYPE</td></tr>
+                        <tr><td><textarea id="POItem" readonly></textarea></td><td><textarea id="POBonus" type="text" readonly></textarea></td><td><textarea id="POType" type="text" readonly></textarea></td></tr>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
 
         </div>
 
         
 
         <script type="text/javascript">
+
+
             var STRDIE = 0;
             var Vit = 0;
             var AGIDIE = 0;
@@ -573,14 +765,46 @@ a:hover
             var NewTalents = 0;
             var TalentList = [0,0,0,0,0,0,0,0];
             var ItemList = [0,0,0,0,0,0,0,0];
-            var ItemType =" Weapon";
+            var ItemType ="Weapon";
 
             //Powers
             var Powers = 0;
             var PowersSpent = 0;
             var NewPowers = 0;
             var PowersList = [0,0,0,0,0,0,0,0];
+            
+            //CharSheet
+            function ViewCharSheet(){
+                UpdateDoc();
+                document.getElementById("printOutID").style.visibility = "visible";
+                document.getElementById("printOutIDbutton").style.visibility = "visible";
+                //var innerht = document.getElementById("printOutID").innerHTML;
+                //PrintElem("printOutID");
 
+            }
+            function PrintElem()
+{
+    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+    
+    mywindow.document.write('<html><head><title>LambHide Character Creator</title>');
+    //mywindow.document.write('<link rel="stylesheet" href="lhcsmain.css" type="text/css" />');
+    var sttrrr=document.getElementById("POItem").value;
+    mywindow.document.write(styleString)
+    mywindow.document.write('</head><body>');
+    //mywindow.document.write(document.getElementById(elem).innerHTML);
+    var pstr = GetPrintString();
+    //var pstr = document.getElementById("printOutID").innerHTML;
+    mywindow.document.write(pstr);
+    mywindow.document.write('</body></html>');
+
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.focus(); // necessary for IE >= 10*/
+
+    mywindow.print();
+    mywindow.close();
+
+    return true;
+}
             function UpdateDoc()
             {
                 //Getting all doc values
@@ -612,8 +836,86 @@ a:hover
                 document.getElementById("LuckDie").value = LvpLuck;
                 document.getElementById("RisenPoints").value = LvpRisen;
                 if ((LvpSTR + LvpAGI + LvpWIT + LvpEGO)>0) document.getElementById("LvpAttbRow").style.display = 'table-row'; else document.getElementById('LvpAttbRow').style.display = 'none';
-            }
 
+                var i = 1;
+                var itemString ="";
+                var bonusString = "";
+                var typeString = "";
+                //This is the stats
+                document.getElementById("POName").value = document.getElementById("namerid").value;
+                document.getElementById("PODesc").value = document.getElementById("descid").value;
+
+                document.getElementById("POStr").value = STRDIE;
+                if(LvpSTR>0){document.getElementById("POStr").value = document.getElementById("STRwLvp");}
+                document.getElementById("POAgi").value = AGIDIE;
+                if(LvpAGI>0){document.getElementById("POAgi").value = document.getElementById("AGIwLvp");}
+                document.getElementById("POWit").value = WITDIE;
+                if(LvpEGO>0){document.getElementById("POWit").value = document.getElementById("WITwLvp");}
+                document.getElementById("POEgo").value = EGODIE;
+                if(LvpEGO>0){document.getElementById("POEgo").value = document.getElementById("EGOwLvp");}
+
+                document.getElementById("POVit").value = Vit;
+                
+                document.getElementById("POSpd").value = document.getElementById("Speed").value;
+                document.getElementById("POPws").value = document.getElementById("Pws").value;
+                document.getElementById("POLuck").value = document.getElementById("LuckDie").value;
+                document.getElementById("PORisen").value = document.getElementById("RisenPoints").value;
+                document.getElementById("POLvl").value = Lvp;
+                i= 1;
+                while(i<9){
+                    if(document.getElementById(("talentworth"+i)).value >0){
+                        itemString += document.getElementById(("talenttext"+i)).value+"\n";
+                        bonusString += document.getElementById(("talentworth"+i)).value+"\n";
+                        typeString += "Talent\n";
+                        
+                    }
+                    i++;
+                }
+                i= 1;
+                while(i<9){
+                    if(!(document.getElementById(("power" + i)).style.display == 'none')){
+                        itemString += document.getElementById(("powertext"+i)).value+"\n";
+                        bonusString += "\n";
+                        typeString += "Power\n";
+                        
+                    }
+                    i++;
+                }
+                i= 1;
+                while(i<9){
+                    if(!(document.getElementById(("item" + i)).style.display == 'none')){
+                        itemString += document.getElementById(("itemtext"+i)).value+"\n";
+                        var penaltyItem = document.getElementById("itempenalty"+i).value;
+                        if(penaltyItem == "" || penaltyItem== "Penalty: None"){ penaltyItem =""} else{
+                            penaltyItem = " "+penaltyItem.replaceAll(" ","");
+                            penaltyItem = penaltyItem.replace("or"," or ");
+                        }
+                        var itemworthI = "+"+document.getElementById(("itemworth"+i)).value;
+                        if(itemworthI == "+0") itemworthI = "";
+                        bonusString += itemworthI+penaltyItem.replace("Penalty:","").replace("AGI","AGI ")+"\n";
+                        typeString += document.getElementById(("itemtype"+i)).value+"\n";
+                        
+                    }
+                    i++;
+                }
+                document.getElementById("POItem").value = itemString;
+                document.getElementById("POBonus").value = bonusString;
+                document.getElementById("POType").value = typeString;
+                
+                var armorB = 0;
+                i=1;
+                while(i<9){
+                    if(!(document.getElementById(("item" + i)).style.display == 'none')){
+                        if(document.getElementById(("itemtype"+i)).value=="Armor"){
+                            armorB += parseInt(document.getElementById(("itemworth"+i)).value);
+                        }
+                    }
+                    i++;
+                }
+                document.getElementById("POArmor").value = armorB;
+                //document.getElementById("").value = ;
+            }
+            
             //Attributes
             function GetSTRDice(dice) 
             {
@@ -727,11 +1029,11 @@ a:hover
                 if(4 < document.getElementById('Wealth').value){
                     SpentWealth += 5;
                     var iworth = 0;
-                    if(ItemType == " Power Channel") {
+                    if(ItemType == "Power Channel") {
                         SpentWealth += 45;
                         iworth++;
                     }
-                    if(ItemType == " Recovery Pws" ||ItemType == " Recovery Vitality"){
+                    if(ItemType == "Recover Pws" ||ItemType == "Recover Vit"){
                         SpentWealth -=3;
                         iworth++;
                     }
@@ -740,7 +1042,7 @@ a:hover
                         if(ItemList[i]== 0){
                             ItemList[i] = 1;
                             document.getElementById("itemworth"+(i+1)).value = iworth;
-                            if (ItemType != " Armor" && ItemType != " Weapon" && ItemType != " Item") {
+                            if (ItemType != "Armor" && ItemType != "Weapon" && ItemType != "Item") {
                                 document.getElementById("itempenalty"+(i+1)).value = "";
                             } else{
                                 document.getElementById("itempenalty"+(i+1)).value = "+2 FS or +2 FG";
@@ -769,10 +1071,10 @@ a:hover
                 if(AoS == "+"){
 
                     curval = parseInt(curval) + 1; 
-                    if(Itype == " Recovery Pws" ||Itype == " Recovery Vitality"){
+                    if(Itype == "Recover Pws" ||Itype == "Recover Vit"){
                         SpentWealth +=2;
                     } 
-                    else if(Itype == " Power Channel") {
+                    else if(Itype == "Power Channel") {
                         SpentWealth += 50;
                     } else{
                         if(curval == 1) {SpentWealth += 20} else SpentWealth +=25;
@@ -783,10 +1085,10 @@ a:hover
                 else {
                     curval = parseInt(curval) - 1;
                     
-                    if(Itype == " Recovery Pws" ||Itype == " Recovery Vitality"){
+                    if(Itype == "Recover Pws" ||Itype == "Recover Vit"){
                         SpentWealth -=2;
                     } 
-                    else if(Itype == " Power Channel") {
+                    else if(Itype == "Power Channel") {
                         SpentWealth -= 50;
                     } else{
                     if(curval == 0) {SpentWealth -= 20} else if(curval == -1){SpentWealth -= 5;} else SpentWealth -=25;
@@ -802,7 +1104,7 @@ a:hover
                     document.getElementById("itemworth" + position).value = curval;
                     document.getElementById("item" + (position)).style.display = 'none';
                 }
-                if (Itype!=" Armor"&&Itype!=" Weapon"&&Itype!=" Item") {
+                if (Itype!="Armor"&&Itype!="Weapon"&&Itype!="Item") {
                     if(curval >= 1) {document.getElementById("itemworth" + position).value = curval;} else 
                     {
                         ItemList[(position-1)] = 0;
@@ -814,7 +1116,7 @@ a:hover
                 //Penalties
                 var penalty;
                 var spdPen ="";
-                if(document.getElementById("itemtype" + position).value == " Armor"){
+                if(document.getElementById("itemtype" + position).value == "Armor"){
                     if(curval == 1 || curval == 2) penalty = "None";
                     if(curval >= 3) penalty = "-" + Math.floor(curval/3) + " AGI -" +Math.floor(curval/3)+ " P";
                     if(curval>=4) penalty+= (" -" + (curval - 3) + " FG");
@@ -829,7 +1131,7 @@ a:hover
                     if(curval >= 29) spdPen=(" -45ft speed")
                     if(curval >= 32) spdPen=(" -50ft speed END OF THE LINE!")
                     if(curval == 0) {document.getElementById("itempenalty" + (position)).value = "+2 FS or +2 FG";} else {document.getElementById("itempenalty" + (position)).value = ("Penalty: " +penalty+ spdPen);}
-                } else if (document.getElementById("itemtype" + position).value == " Weapon") {
+                } else if (document.getElementById("itemtype" + position).value == "Weapon") {
                     if(curval == 1 || curval == 2) penalty = "None";
                     if(curval >= 3) penalty = "-" + Math.floor(curval - 2) + " FG";
                     if(curval == 0) {document.getElementById("itempenalty" + (position)).value = "+2 FS or +2 FG";} else {document.getElementById("itempenalty" + (position)).value = ("Penalty: " +penalty);}
@@ -1116,8 +1418,405 @@ a:hover
                 }
                 UpdateDoc();
             }
-
-
+            var styleString = '<style type="text/css">\n'+
+'            input{\n'+
+'            max-width: 140px;\n'+
+'            text-align: center;\n'+
+'            border-color: transparent;\n'+
+'            }\n'+
+'            a, a:visited \n'+
+'{\n'+
+'    color:black;\n'+
+'    text-decoration: none;\n'+
+'}\n'+
+'a:hover \n'+
+'{\n'+
+'    background-color: rgba(0, 0, 0, 0.171);\n'+
+'    border-radius: 25px;\n'+
+'    \n'+
+'    text-decoration: underline;\n'+
+'}\n'+
+'            .mainFrame{\n'+
+'                padding-top: 5%;\n'+
+'                display: flex;\n'+
+'                flex-wrap: wrap;\n'+
+'                flex-direction: column;\n'+
+'                justify-content: center;\n'+
+'                max-width: 650px;\n'+
+'                margin: auto;\n'+
+'                width:99vw\n'+
+'            }\n'+
+'            .nameDesc{\n'+
+'                text-align: center;\n'+
+'            }\n'+
+'            .namer{\n'+
+'                width: 70%;\n'+
+'                max-width: 100%;\n'+
+'                text-align: left;\n'+
+'                border: solid 1px black;\n'+
+'            }\n'+
+'            .nameDesc textarea{\n'+
+'                width: 99%;\n'+
+'                word-wrap: break-word;\n'+
+'            }\n'+
+'            .part1{\n'+
+'                z-index: 2;\n'+
+'                background-color: white;\n'+
+'                width: 100%;\n'+
+'            }\n'+
+'            .attb{\n'+
+'\n'+
+'                min-width: 100%;\n'+
+'                text-align: center;\n'+
+'                margin:20px auto;\n'+
+'                font-size: small;\n'+
+'            }\n'+
+'            .attb table{\n'+
+'                border: solid 1px black;\n'+
+'                width: 100%;\n'+
+'            }\n'+
+'            .attb thead{\n'+
+'                color: white;\n'+
+'                background-color: black;\n'+
+'                font-weight: bold;\n'+
+'            }\n'+
+'            .attb td{\n'+
+'                width: 25%;\n'+
+'            }\n'+
+'            .attb select{\n'+
+'                width: 100%;\n'+
+'                font-size:x-large;\n'+
+'                text-align: center;\n'+
+'            }\n'+
+'\n'+
+'            /* .lvpTotal{\n'+
+'                top:10px;\n'+
+'                left:62%;\n'+
+'                border-radius: 7px;\n'+
+'                width: 30%;\n'+
+'                padding: 5px;\n'+
+'                position: fixed;\n'+
+'                background: white;\n'+
+'                border: solid 1px black;\n'+
+'                text-align: center;\n'+
+'                font-size: large;\n'+
+'                z-index: 1;\n'+
+'            } */\n'+
+'            .lvpTotal input{\n'+
+'                font-size: large;\n'+
+'                text-align: center;\n'+
+'                background-color: rgba(0, 0, 0, 0);\n'+
+'                width: 100%;\n'+
+'            }\n'+
+'            .attbLimitLvpTotal{\n'+
+'                text-align: center;\n'+
+'                font-size: larger;\n'+
+'                width: 100%;\n'+
+'            }\n'+
+'            \n'+
+'            .PYoN{\n'+
+'                width: 300px;\n'+
+'                margin: 15px auto;\n'+
+'            }\n'+
+'\n'+
+'            .part2{\n'+
+'                width: 80%;\n'+
+'                margin: auto;\n'+
+'                text-align: center;\n'+
+'            }\n'+
+'            \n'+
+'            .statsTable{\n'+
+'                text-align: center;\n'+
+'                width: 100%;\n'+
+'\n'+
+'            }\n'+
+'            .statsTable thead{\n'+
+'                color: white;\n'+
+'                background-color: black;\n'+
+'                font-weight: bold;\n'+
+'            }\n'+
+'            .statsTable td{\n'+
+'                width: 33%;\n'+
+'                border: solid 1px black;\n'+
+'            }\n'+
+'            .statsTable input{\n'+
+'                width: 77%;\n'+
+'                font-size: larger;\n'+
+'            }\n'+
+'\n'+
+'            .part3{\n'+
+'                max-width: 400px;\n'+
+'                margin: 15px auto;\n'+
+'                text-align: center;\n'+
+'            }\n'+
+'            \n'+
+'            .part4{\n'+
+'                max-width: 400px;\n'+
+'                margin: 15px auto;\n'+
+'                text-align: center;\n'+
+'            }\n'+
+'            .part5{\n'+
+'                max-width: 400px;\n'+
+'                margin: auto;\n'+
+'                text-align: center;\n'+
+'                margin: 15px auto;\n'+
+'            }\n'+
+'            .part6{\n'+
+'                margin: 15px auto;\n'+
+'                margin: auto;\n'+
+'                text-align: center;\n'+
+'\n'+
+'            }\n'+
+'            .part3 input{\n'+
+'                max-width:20px;\n'+
+'                text-align: center;\n'+
+'            }\n'+
+'            .part3 .talent{\n'+
+'                width: 65%;\n'+
+'                max-width: 65%;\n'+
+'            }\n'+
+'            .part4 input{\n'+
+'                max-width:20px;\n'+
+'                text-align: center;\n'+
+'            }\n'+
+'            .part4 .power{\n'+
+'                width: 75%;\n'+
+'                max-width: 75%;\n'+
+'            }\n'+
+'            .lvpChart{\n'+
+'                text-align: center;\n'+
+'            }\n'+
+'            .lvpChart table{\n'+
+'                width:100%;\n'+
+'                border-collapse: collapse;\n'+
+'                border: solid 1px black;\n'+
+'                text-align: center;\n'+
+'            }\n'+
+'            .lvpChart td{\n'+
+'                border: solid 1px black;\n'+
+'            }\n'+
+'            .lvpChart thead{\n'+
+'                color: white;\n'+
+'                background-color: black;\n'+
+'                font-weight: bold;\n'+
+'            }\n'+
+'            .part6 input{\n'+
+'                max-width: 40px;\n'+
+'            }\n'+
+'            #PowerPoints{\n'+
+'                max-width: 40px;\n'+
+'            }\n'+
+'            #Wealth, #Wealth2{\n'+
+'                max-width: 40px;\n'+
+'            }\n'+
+'            .Ibonus{\n'+
+'                width: 20px;\n'+
+'            }\n'+
+'            .Itype{\n'+
+'                font-size: small;\n'+
+'                width:55px;\n'+
+'            }\n'+
+'            .penalty{\n'+
+'                max-width:600px;\n'+
+'                width: 90%;\n'+
+'            }\n'+
+'            .Cost{\n'+
+'                width: 40px;\n'+
+'            }\n'+
+'            #li2{\n'+
+'                max-width: 80px;\n'+
+'            }\n'+
+'            .Ebutton{\n'+
+'                Min-width: 25px;\n'+
+'            }\n'+
+'\n'+
+'            .printOut{\n'+
+'                visibility: hidden;\n'+
+'                display: block;\n'+
+'                margin: auto;\n'+
+'                max-width: 700px;\n'+
+'                padding: 10px;\n'+
+'                border: 1px solid lightgray;\n'+
+'            }\n'+
+'.Fcontainer {\n'+
+'  display: flex;\n'+
+'  flex-wrap: nowrap;\n'+
+'  flex-direction: row;\n'+
+'  justify-content: center;\n'+
+'  align-items: auto;\n'+
+'  align-content: start;\n'+
+'}\n'+
+'/* .Fcontainer:after {\n'+
+'  display: block;\n'+
+'  content: " placeholder ";\n'+
+'  margin: 2px;\n'+
+'  flex: 999 999 auto;\n'+
+'} */\n'+
+'.HFitem {\n'+
+'    background-color: black;\n'+
+'    color: white;\n'+
+'    font-size: small;\n'+
+'    text-align: center;\n'+
+'  flex: 1 1 auto;\n'+
+'  margin: 2px;\n'+
+'}\n'+
+'.AFitem{\n'+
+'    width: 25%;\n'+
+'    min-width: 77px;\n'+
+'}\n'+
+'.Fitem {\n'+
+'    text-align: center;\n'+
+'  flex: 1 1 auto;\n'+
+'  margin: 2px;\n'+
+'}\n'+
+'.Fitem input{\n'+
+'    border: 1px solid lightgray;\n'+
+'    max-width: 500px; \n'+
+'    width: 90%;\n'+
+'    margin-left: 2px;\n'+
+'    margin-right: 2px;\n'+
+'}\n'+
+'.Fitem textarea{\n'+
+'    border: 1px solid lightgray;\n'+
+'    max-width: 500px; \n'+
+'    width: 85%;\n'+
+'    margin-left: 2px;\n'+
+'    margin-right: 2px;\n'+
+'    height: 200px;    \n'+
+'    text-align: center;\n'+
+'}\n'+
+'        </style>';
+function GetPrintString(){
+    var printString = '\n'+
+'            <h1 style="display: block; margin: auto; text-align: center;">LAMBHIDE</h1>\n'+
+'            <H3 style="display: block; margin: auto; text-align: center;">CHARACTER SHEET</H3>\n'+
+'            <div class="Fcontainer">\n'+
+'                <div class="Fitem">\n'+
+'                    <table style="width: 100%;">\n'+
+'                        <tr style="background-color: black; color: white;"><td>CHARACTER NAME</td></tr>\n'+
+'                        <tr><td><input id="POName" value="'+document.getElementById("POName").value+'" type="text" readonly/></td></tr>\n'+
+'                    </table>\n'+
+'                </div>\n'+
+'                \n'+
+'            </div>\n'+
+'            <div class="Fcontainer">\n'+
+'                <div class="Fitem">\n'+
+'                    <table style="width: 100%;">\n'+
+'                        <tr style="background-color: black; color: white;"><td>DESCRIPTION</td></tr>\n'+
+'                        <tr><td><textarea style="width: 100%;" id="PODesc" type="text" readonly>'+document.getElementById("PODesc").value+'</textarea></td></tr>\n'+
+'                    </table>\n'+
+'                </div>\n'+
+'                \n'+
+'            </div>\n'+
+'            \n'+
+'            <div class="Fcontainer">\n'+
+'                <div class="HFitem">\n'+
+'                    ATTRIBUTES\n'+
+'                </div>\n'+
+'                \n'+
+'            </div>\n'+
+'            <div class="Fcontainer">\n'+
+'                <div class="HFitem AFitem">\n'+
+'                    STRENGTH\n'+
+'                </div>\n'+
+'                <div class="HFitem AFitem">\n'+
+'                    AGILITY\n'+
+'                </div>\n'+
+'                <div class="HFitem AFitem">\n'+
+'                    WIT\n'+
+'                </div>\n'+
+'                <div class="HFitem AFitem">\n'+
+'                    EGO\n'+
+'                </div>\n'+
+'            </div>\n'+
+'            <div class="Fcontainer">\n'+
+'                <div class="Fitem">\n'+
+'                    <input id="POStr" value="'+document.getElementById("POStr").value+'" type="text" readonly/>\n'+
+'                </div>\n'+
+'                <div class="Fitem">\n'+
+'                    <input id="POAgi" value="'+document.getElementById("POAgi").value+'" type="text" readonly/>\n'+
+'                </div>\n'+
+'                <div class="Fitem">\n'+
+'                    <input id="POWit" value="'+document.getElementById("POWit").value+'" type="text" readonly/>\n'+
+'                </div>\n'+
+'                <div class="Fitem">\n'+
+'                    <input id="POEgo" value="'+document.getElementById("POEgo").value+'" type="text" readonly/>\n'+
+'                </div>\n'+
+'            </div>\n'+
+'            <div class="Fcontainer">\n'+
+'                <div class="HFitem">\n'+
+'                    STATS\n'+
+'                </div>\n'+
+'                \n'+
+'            </div>\n'+
+'            <div class="Fcontainer">\n'+
+'                <div class="Fitem">\n'+
+'                    <table style="width: 100%;">\n'+
+'                        <tr style="background-color: black; color: white;"><td>VITALITY</td></tr>\n'+
+'                        <tr><td><input id="POVit" value="'+document.getElementById("POVit").value+'" type="text" readonly/></td></tr>\n'+
+'                    </table>\n'+
+'                </div>\n'+
+'                <div class="Fitem">\n'+
+'                    <table style="width: 100%;">\n'+
+'                        <tr style="background-color: black; color: white;"><td>ARMOR</td></tr>\n'+
+'                        <tr><td><input id="POArmor" value="'+document.getElementById("POArmor").value+'" type="text" readonly/></td></tr>\n'+
+'                    </table>\n'+
+'                </div>\n'+
+'            </div>\n'+
+'            <div class="Fcontainer">\n'+
+'                <div class="Fitem">\n'+
+'                    \n'+
+'                </div>\n'+
+'                <div class="Fitem">\n'+
+'                    \n'+
+'                </div>\n'+
+'            </div>\n'+
+'            <div class="Fcontainer">\n'+
+'                <div class="Fitem">\n'+
+'                    <table style="width: 100%;">\n'+
+'                        <tr style="background-color: black; color: white;"><td>SPEED</td></tr>\n'+
+'                        <tr><td><input id="POSpd" value="'+document.getElementById("POSpd").value+'" type="text" readonly/></td></tr>\n'+
+'                    </table>\n'+
+'                </div>\n'+
+'                <div class="Fitem">\n'+
+'                    <table style="width: 100%;">\n'+
+'                        <tr style="background-color: black; color: white;"><td>POWER SCORE</td></tr>\n'+
+'                        <tr><td><input id="POPws" value="'+document.getElementById("POPws").value+'" type="text" readonly/></td></tr>\n'+
+'                    </table>\n'+
+'                </div>\n'+
+'            </div>\n'+
+'            <div class="Fcontainer">\n'+
+'                <div class="Fitem">\n'+
+'                    <table style="width: 100%;">\n'+
+'                        <tr style="background-color: black; color: white;"><td>LUCK DIE</td></tr>\n'+
+'                        <tr><td><input id="POLuck" value="'+document.getElementById("POLuck").value+'" type="text" readonly/></td></tr>\n'+
+'                    </table>\n'+
+'                </div>\n'+
+'                <div class="Fitem">\n'+
+'                    <table style="width: 100%;">\n'+
+'                        <tr style="background-color: black; color: white;"><td>RISEN POINTS</td></tr>\n'+
+'                        <tr><td><input id="PORisen" value="'+document.getElementById("PORisen").value+'" type="text" readonly/></td></tr>\n'+
+'                    </table>\n'+
+'                </div>\n'+
+'                <div class="Fitem">\n'+
+'                    <table style="width: 100%;">\n'+
+'                        <tr style="background-color: black; color: white;"><td>LEVEL POINTS</td></tr>\n'+
+'                        <tr><td><input id="POLvl" value="'+document.getElementById("POLvl").value+'" type="text" readonly/></td></tr>\n'+
+'                    </table>\n'+
+'                </div>\n'+
+'            </div>\n'+
+'            <div class="Fcontainer">\n'+
+'                <div class="Fitem">\n'+
+'                    <table style="width: 100%;">\n'+
+'                        <tr style="background-color: black; color: white;"><td>TALENTS, POWERS, & ITEMS</td><td style="width: 22%;">BONUS</td><td style="width: 26%;">TYPE</td></tr>\n'+
+'                        <tr><td><textarea id="POItem" readonly>'+document.getElementById("POItem").value+'</textarea></td><td><textarea id="POBonus" type="text" readonly>'+document.getElementById("POBonus").value+'</textarea></td><td><textarea id="POType" type="text" readonly>'+document.getElementById("POType").value+'</textarea></td></tr>\n'+
+'                    </table>\n'+
+'                </div>\n'+
+'            </div>\n'+
+'            \n'+
+'        ';
+    return printString;
+}
         </script>
 
 
