@@ -50,6 +50,8 @@ a:hover
             }
             .nameDesc textarea{
                 width: 99%;
+                resize: none;
+                overflow: hidden;
                 word-wrap: break-word;
             }
             .part1{
@@ -275,7 +277,8 @@ a:hover
     width: 85%;
     margin-left: 2px;
     margin-right: 2px;
-    height: 200px;    
+    resize: none;
+    overflow: hidden;
     text-align: center;
 }
         </style>
@@ -291,7 +294,7 @@ a:hover
             <div class="nameDesc">
                 Name <input type="text" class="namer" id="namerid">
                 <hr>
-                Description<br><textarea rows="3" id="descid"></textarea>
+                Description<br><textarea rows="3" id="descid" onkeypress="auto_growDesc(this)" onkeyup="auto_growDesc(this)"></textarea>
             </div>
             <div name="attb" class="attb">
                 ATTRIBUTES
@@ -715,7 +718,7 @@ a:hover
                 <div class="Fitem">
                     <table style="width: 100%;">
                         <tr style="background-color: black; color: white;"><td>TALENTS, POWERS, & ITEMS</td><td style="width: 22%;">BONUS</td><td style="width: 26%;">TYPE</td></tr>
-                        <tr><td><textarea id="POItem" readonly></textarea></td><td><textarea id="POBonus" type="text" readonly></textarea></td><td><textarea id="POType" type="text" readonly></textarea></td></tr>
+                        <tr><td><textarea id="POItem" contenteditable readonly></textarea></td><td><textarea id="POBonus" type="text" readonly></textarea></td><td><textarea id="POType" type="text" readonly></textarea></td></tr>
                     </table>
                 </div>
             </div>
@@ -773,6 +776,22 @@ a:hover
             var NewPowers = 0;
             var PowersList = [0,0,0,0,0,0,0,0];
             
+            var textareaHeightDesc = "30px";
+            var textareaHeightItems = "30px";
+
+            function auto_growDesc(element){
+                element.style.height = "5px";
+                element.style.height = (element.scrollHeight)+"px";
+                document.getElementById("PODesc").style.height = element.style.height;
+                textareaHeightDesc = element.style.height;
+            }
+            function auto_growItems(){
+                document.getElementById("POItem").style.height = "5px";
+                document.getElementById("POItem").style.height = (document.getElementById("POItem").scrollHeight)+"px";
+                document.getElementById("POBonus").style.height = document.getElementById("POItem").style.height;
+                document.getElementById("POType").style.height = document.getElementById("POItem").style.height;
+            }
+
             //CharSheet
             function ViewCharSheet(){
                 UpdateDoc();
@@ -913,6 +932,7 @@ a:hover
                     i++;
                 }
                 document.getElementById("POArmor").value = armorB;
+                auto_growItems();
                 //document.getElementById("").value = ;
             }
             
@@ -1457,6 +1477,8 @@ a:hover
 '            }\n'+
 '            .nameDesc textarea{\n'+
 '                width: 99%;\n'+
+'                resize: none;\n'+
+'                overflow: hidden;\n'+
 '                word-wrap: break-word;\n'+
 '            }\n'+
 '            .part1{\n'+
@@ -1635,6 +1657,7 @@ a:hover
 '                display: block;\n'+
 '                margin: auto;\n'+
 '                max-width: 700px;\n'+
+'                max-height: 100vh;\n'+
 '                padding: 10px;\n'+
 '                border: 1px solid lightgray;\n'+
 '            }\n'+
@@ -1680,9 +1703,10 @@ a:hover
 '    border: 1px solid lightgray;\n'+
 '    max-width: 500px; \n'+
 '    width: 85%;\n'+
+'    resize: none;\n'+
+'    overflow: hidden;\n'+
 '    margin-left: 2px;\n'+
 '    margin-right: 2px;\n'+
-'    height: 200px;    \n'+
 '    text-align: center;\n'+
 '}\n'+
 '        </style>';
@@ -1703,7 +1727,7 @@ function GetPrintString(){
 '                <div class="Fitem">\n'+
 '                    <table style="width: 100%;">\n'+
 '                        <tr style="background-color: black; color: white;"><td>DESCRIPTION</td></tr>\n'+
-'                        <tr><td><textarea style="width: 100%;" id="PODesc" type="text" readonly>'+document.getElementById("PODesc").value+'</textarea></td></tr>\n'+
+'                        <tr><td><textarea style="width: 100%; height: '+textareaHeightDesc+';" id="PODesc" type="text" readonly>'+document.getElementById("PODesc").value+'</textarea></td></tr>\n'+
 '                    </table>\n'+
 '                </div>\n'+
 '                \n'+
@@ -1809,7 +1833,7 @@ function GetPrintString(){
 '                <div class="Fitem">\n'+
 '                    <table style="width: 100%;">\n'+
 '                        <tr style="background-color: black; color: white;"><td>TALENTS, POWERS, & ITEMS</td><td style="width: 22%;">BONUS</td><td style="width: 26%;">TYPE</td></tr>\n'+
-'                        <tr><td><textarea id="POItem" readonly>'+document.getElementById("POItem").value+'</textarea></td><td><textarea id="POBonus" type="text" readonly>'+document.getElementById("POBonus").value+'</textarea></td><td><textarea id="POType" type="text" readonly>'+document.getElementById("POType").value+'</textarea></td></tr>\n'+
+'                        <tr><td><textarea id="POItem" style="height: '+document.getElementById("POItem").style.height+'" readonly>'+document.getElementById("POItem").value+'</textarea></td><td><textarea id="POBonus" type="text" style="height: '+document.getElementById("POItem").style.height+'" readonly>'+document.getElementById("POBonus").value+'</textarea></td><td><textarea id="POType" type="text" style="height: '+document.getElementById("POItem").style.height+'" readonly >'+document.getElementById("POType").value+'</textarea></td></tr>\n'+
 '                    </table>\n'+
 '                </div>\n'+
 '            </div>\n'+
