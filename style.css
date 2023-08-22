@@ -48,7 +48,7 @@ h1{color: rgb(0, 0, 0);}
     color: white;
     text-align: left;
     background-color: black;
-    background-image: url(img/cover2.png);
+    /* background-image: url(img/cover2.png); */
     background-size:contain;
     background-position-y: 50%;
     background-repeat: no-repeat;
@@ -62,7 +62,10 @@ h1{color: rgb(0, 0, 0);}
     margin-bottom: -14px;
     color: white;
 }
-
+.faceimg{
+    width: 100%;
+}
+.charsheet{width: 100%;border: solid black 1px;margin: 5px;}
 .scrollContent
 {
     flex: 1;
