@@ -830,15 +830,15 @@ a:hover
 
                 Vit = STRDIE + LvpVit;
                 Speed = ((AGIDIE * 2.5)+10) + LvpSpeed;
-                if (WITDIE > (EGODIE/2)) {Pws = WITDIE + LvpPws} else {Pws = (LvpPws+(EGODIE/2))};
+                if (WITDIE > (EGODIE)) {Pws = (WITDIE/2) + LvpPws} else {Pws = (LvpPws+(EGODIE/2))};
                 Talents = WITDIE / 2 + LvpTalent;
 
-                if (hasP > 1) { if(WITDIE > EGODIE) {hasP = (WITDIE * 1.5)} else {hasP = (EGODIE * 1.5)} Pws = 0;} else hasP = 0;
+                if (hasP > 1) { if(WITDIE > EGODIE) {hasP = (WITDIE * 2)} else {hasP = (EGODIE * 2)} Pws = 0;} else hasP = 0;
                 Wealth = (EGODIE * 5) + LvpWealth - SpentWealth;
 
                 AtbLimit = 30 - (STRDIE + AGIDIE + WITDIE + EGODIE)
                 //Talents or Powers
-                Lvp = EGODIE + hasP + (2 * (AtbLimit)) + SpentLvp;
+                Lvp = EGODIE + hasP + (3 * (AtbLimit)) + SpentLvp;
 
 
                 //Set Doc Values
